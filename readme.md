@@ -6,4 +6,4 @@
 ## Data
  - searchQuery: ''
  ## Methods
- - searchQuery //
+ - searchQuery 
