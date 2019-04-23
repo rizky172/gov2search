@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="https://api.kl2.web.id/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://api.kl2.web.id/js/vue.js"></script>
+    <script src="https://api.kl2.web.id/js/httpVueLoader.js"></script>
+    <script src="https://api.kl2.web.id/js/axios.min.js"></script>
+    <script type="text/javascript">
+        const eventBus = new Vue();
+    </script>
+  </head>
+  <body>
+<div id="app">
+    <section class="hero is-primary">
+    	<div> </div>
+    </section>
+        
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+              <div class="column is-narrow">
+                <div style="width: 200px;"></div>
+              </div>
+              <div class="column">
+                <h1 class="title">Search Component</h1>
+                  <h2 class="subtitle"></h2>                                
+                  <span>&nbsp;</span>
+                    <gov2navbreadcrumb :path-url="pathurl"></gov2navbreadcrumb>          
+                  <span>&nbsp;</span>
+                <div>
+                    <div class="field is-horizontal">
+                      <div class="field-body">
+                        <div class="field is-grouped is-grouped-right">
+                            <gov2search></gov2search>
+                        </div>
+                      </div>
+                    </div>
+                </div>          
+                <span>&nbsp;</span>
+                <div>
+                    <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                          <label class="label">searchQuery</label>
+                      </div>
+                      <div class="field-body">
+                        <div v-text="searchQuery" class="field box"></div>
+                      </div>
+                    </div>
+                </div>	              
+               </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+            	<p>
+                   <strong>Gov 2.0</strong> by Cyber Gov Labs. The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. 
+                    </p>
+        </div>
+      </div>
+    </footer>
+</div>
+ 
+ <script type="text/javascript">
+  new Vue({
+	    el: '#app',
+    components: {
+	          'gov2search': httpVueLoader('vue/gov2search.vue'),
+            'gov2navbreadcrumb': httpVueLoader('vue/gov2navbreadcrumb.vue'),
+	           },
+
+	      data () {
+        return {"searchQuery":"","pathurl":"\/components\/gov2nav\/breadcrumb\/components\/gov2search\/"}
+    },
+    methods: {
+        setQuery: function(data) {this.searchQuery=data;},
+    },
+    created: function () {
+        eventBus.$on("searchQuery", this.setQuery);
+    },
+  });
+</script>
+ 
+  </body>
+</html>
